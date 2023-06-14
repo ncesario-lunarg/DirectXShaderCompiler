@@ -222,7 +222,9 @@ std::pair<uint32_t, uint32_t> AlignmentSizeCalculator::getAlignmentAndSize(
       // Use element alignment for fxc rules and VK_EXT_scalar_block_layout
       if (rule != SpirvLayoutRule::FxcCTBuffer &&
           rule != SpirvLayoutRule::FxcSBuffer &&
-          rule != SpirvLayoutRule::Scalar)
+          rule != SpirvLayoutRule::Scalar &&
+          rule != SpirvLayoutRule::RelaxedGLSLStd140 &&
+          rule != SpirvLayoutRule::RelaxedGLSLStd430)
         alignment = (elemCount == 3 ? 4 : elemCount) * size;
 
       return {alignment, elemCount * size};
